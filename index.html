@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sweet Dreams, My Cherry Blossom</title>
+  <title>Sweet Dreams</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap');
     
@@ -133,13 +133,34 @@
       font-size: 1.8rem;
       color: #e07a96;
     }
+
+    .gif-container {
+      margin: 0 auto 1.5rem;
+      max-width: 80%;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3),
+                  0 0 15px rgba(170, 140, 230, 0.15);
+      border: 2px solid rgba(150, 120, 200, 0.15);
+    }
+
+    .good-night-gif {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      display: block;
+      object-fit: contain;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Sweet dream, cutie</h1>
-    <p>As the night wraps around you like a gentle embrace,</p>
-    <p class="heart">♥</p>
+    <div class="gif-container">
+      <img src="./good-night.gif" alt="Good Night Animation" class="good-night-gif" loop="infinite">
+    </div>
   </div>
   
   <div class="moon"></div>
