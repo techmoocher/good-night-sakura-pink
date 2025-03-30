@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Dreams, My Cherry Blossom</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: #120022;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    .container {
+      text-align: center;
+      z-index: 10;
+      padding: 20px;
+      background-color: rgba(255, 192, 203, 0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      max-width: 90%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      color: #e4a6b1;
+      margin-bottom: 20px;
+      text-shadow: 0 0 5px #e07a96, 0 0 10px #e07a96;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .heart {
+      color: #e07a96;
+      font-size: 1.5rem;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+    
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .star {
+      position: absolute;
+      background-color: #f8f8ff;
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+      opacity: 0.6;
+    }
+    
+    .moon {
+      position: absolute;
+      top: 50px;
+      right: 50px;
+      width: 80px;
+      height: 80px;
+      background-color: #f5f3e6;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #f5f3e6, 0 0 20px rgba(245, 243, 230, 0.5);
+      z-index: 2;
+      opacity: 0.8;
+    }
+    
+    .cherry-blossom {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #e4a6b1;
+      border-radius: 15px 0 15px 0;
+      opacity: 0.6;
+      animation: fall 10s linear infinite;
+      z-index: 3;
+    }
+    
+    @keyframes twinkle {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+      100% { opacity: 0.3; }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    
+    @keyframes fall {
+      0% {
+        transform: translate(0, -100px) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 0.6; }
+      100% {
+        transform: translate(100px, 100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    .signature {
+      font-family: 'Dancing Script', cursive;
+      margin-top: 30px;
+      font-size: 1.8rem;
+      color: #e07a96;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sweet dream, cutie</h1>
+    <p>As the night wraps around you like a gentle embrace,</p>
+    <p class="heart">♥</p>
+  </div>
+  
+  <div class="moon"></div>
+  <div class="stars" id="stars"></div>
+  
+  <script>
+    // Create twinkling stars
+    const starsContainer = document.getElementById('stars');
+    const numberOfStars = 80; // Reduced number of stars
+    
+    for (let i = 0; i < numberOfStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      
+      // Random size between 1 and 3px (smaller stars)
+      const size = Math.random() * 2 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      
+      // Random position
+      const left = Math.random() * 100;
+      const top = Math.random() * 100;
+      star.style.left = `${left}%`;
+      star.style.top = `${top}%`;
+      
+      // Random twinkle animation delay
+      star.style.animationDelay = `${Math.random() * 3}s`;
+      
+      starsContainer.appendChild(star);
+    }
+    
+    // Create falling cherry blossoms
+    function createCherryBlossom() {
+      const blossom = document.createElement('div');
+      blossom.classList.add('cherry-blossom');
+      
+      // Random position on top of screen
+      const left = Math.random() * 100;
+      blossom.style.left = `${left}%`;
+      
+      // Random size
+      const size = Math.random() * 8 + 5; // Slightly smaller blossoms
+      blossom.style.width = `${size}px`;
+      blossom.style.height = `${size}px`;
+      
+      // Random animation duration
+      const duration = Math.random() * 15 + 10;
+      blossom.style.animationDuration = `${duration}s`;
+      
+      document.body.appendChild(blossom);
+      
+      // Remove the element after animation completes
+      setTimeout(() => {
+        blossom.remove();
+      }, duration * 1000);
+    }
+    
+    // Create cherry blossoms less frequently
+    setInterval(createCherryBlossom, 1500);
+    
+    // Create initial blossoms
+    for (let i = 0; i < 6; i++) { // Fewer initial blossoms
+      setTimeout(createCherryBlossom, Math.random() * 3000);
+    }
+  </script>
+</body>
+</html>
